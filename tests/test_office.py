@@ -104,7 +104,11 @@ with sync_playwright() as p:
     pills = page.locator(".task .pill").all_inner_texts()
     check("the 'doing' filter only shows doing tasks", len(pills) > 0 and all(t.lower() == "doing" for t in pills), str(pills))
     page.click("[data-mode=story]"); page.wait_for_timeout(300)
-    page.click("#copyCmd"); page.wait_for_timeout(300)
+    page.click("#copyCmd")
+    try:  # the clipboard answer can take a moment; wait for the button to report what happened
+        page.wait_for_function("document.querySelector('#copyCmd').textContent !== 'Copy command'", timeout=2000)
+    except Exception:
+        pass
     label = page.inner_text("#copyCmd")
     check("copy button confirms", label in ("Copied", "Select it and copy"), label)
 
