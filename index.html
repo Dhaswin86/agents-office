@@ -562,9 +562,12 @@ const KID = {
     why: 'It makes the answers, tests that they work, and ticks off the to-do list.' },
 };
 // What kind of step is this? A picture and a plain word for it.
+// A step failed only if it names a failure and isn't just recalling an earlier one ("worked this time (403 last run)")
+const recovered = t => /worked this time|no page failed|last run|last time|loaded this time/i.test(t);
 function kind(t) {
-  if (/403|returned empty|couldn.?t open/i.test(t)) return ['🚫', "couldn't open"];
-  if (/blocked|failed|not allowed|refused/i.test(t)) return ['✋', "wasn't allowed"];
+  if (/as expected|^proved/i.test(t)) return ['✅', 'checked'];
+  if (/403|returned empty|couldn.?t open/i.test(t) && !recovered(t)) return ['🚫', "couldn't open"];
+  if (/blocked|failed|not allowed|refused/i.test(t) && !recovered(t)) return ['✋', "wasn't allowed"];
   if (/^start/i.test(t)) return ['🚀', 'started'];
   if (/^(search|looking)/i.test(t)) return ['🔍', 'searched'];
   if (/^\S+\.md written|^(wrote|writing|saved)/i.test(t)) return ['✍️', 'wrote'];
@@ -626,7 +629,7 @@ function sitesUsed(s) {
   return {
     sites: Object.values(by).sort((a, b) => b.pages.length - a.pages.length),
     searches: items.filter(it => /^search/i.test(it.t)).map(it => it.t.replace(/^searched\s*(\(firecrawl\))?\s*:?\s*(for)?\s*/i, '')),
-    failed: items.filter(it => /blocked|403|returned empty|failed/i.test(it.t)).map(it => it.t.replace(/^tried\s*/i, '')),
+    failed: items.filter(it => /blocked|403|returned empty|failed/i.test(it.t) && !recovered(it.t)).map(it => it.t.replace(/^tried\s*/i, '')),
     local: /~\/Documents|\/Users\//.test(finder.outputText || '') || items.some(it => /~\/Documents/.test(it.t)),
   };
 }
