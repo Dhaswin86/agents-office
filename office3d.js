@@ -594,7 +594,28 @@
           const packet = new THREE.Mesh(K.track(new THREE.SphereGeometry(0.35, 14, 10)), pmat); road.add(packet); packet.visible = false;
           roads[team] = { packet, from, to };
         });
-        return { rooms, roads, nodes, nodeMat, lineMat, states: {} };
+        // Dotted links like a network map: The Brain to every room, and room to room in the order work is handed on.
+        // Dots drift along each arc; the link to a working team runs faster and brighter.
+        const links = [];
+        function dotted(from, to, lift, n, team) {
+          const mid = from.clone().add(to).multiplyScalar(0.5); mid.y = Math.max(from.y, to.y) + lift;
+          const curve = new THREE.QuadraticBezierCurve3(from, mid, to);
+          const geo = K.track(new THREE.BufferGeometry());
+          geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 3), 3));
+          const mat = K.track(new THREE.PointsMaterial({ color: 0x8fb3ff, size: 2.6, sizeAttenuation: false, transparent: true, opacity: 0.45, depthWrite: false }));
+          const pts = new THREE.Points(geo, mat); pts.frustumCulled = false; scene.add(pts);
+          links.push({ curve, geo, mat, n, team, shift: 0 });
+        }
+        const brain = new THREE.Vector3(0, 1.2, 0);
+        const top = team => { const [x, z] = OFFICE_SPOTS[team]; return new THREE.Vector3(x, 5.2, z); };
+        Object.keys(OFFICE_SPOTS).forEach(team => dotted(brain, top(team), 7, 22, team));
+        dotted(top('analyst'), top('finder'), 9, 34, 'finder');
+        dotted(top('finder'), top('builder'), 9, 34, 'builder');
+        // faint network lines fanning out from The Brain into the distance
+        [0.35, 1.25, 2.2, 3.0, 3.9, 4.7, 5.6].forEach((ang, i) => {
+          dotted(brain, new THREE.Vector3(Math.sin(ang) * 46, 0, Math.cos(ang) * 46), 5 + (i % 3) * 3, 40, null);
+        });
+        return { rooms, roads, nodes, nodeMat, lineMat, links, states: {} };
       },
       pickables: b => Object.values(b.rooms).map(r => r.room),
       onPick,
@@ -614,6 +635,19 @@
         const pulse = running.length ? 0.7 + 0.6 * Math.sin(t * 4) : 0.6;
         b.nodeMat.emissiveIntensity = pulse; b.lineMat.opacity = running.length ? 0.45 + 0.35 * Math.sin(t * 4) : 0.45;
         b.nodes.forEach((n, i) => { n.position.y = 0.5 + 0.08 * Math.sin(t * 2 + i); });
+        const tmp = new THREE.Vector3();
+        b.links.forEach(l => {
+          const on = b.states[l.team] === 'running';
+          l.shift += dt * (on ? 7 : 1.2);
+          l.mat.opacity += ((on ? 0.95 : l.team ? 0.5 : 0.22) - l.mat.opacity) * Math.min(1, dt * 4);
+          l.mat.color.setHex(on ? 0x9ec0ff : 0x6f8fd0);
+          const arr = l.geo.attributes.position.array;
+          for (let i = 0; i < l.n; i++) {
+            l.curve.getPoint(((i + l.shift) % l.n) / l.n, tmp);
+            arr[i * 3] = tmp.x; arr[i * 3 + 1] = tmp.y; arr[i * 3 + 2] = tmp.z;
+          }
+          l.geo.attributes.position.needsUpdate = true;
+        });
       },
       labels(h, b) {
         const box = h.querySelector('.s3-labels'); if (!box) return [];
