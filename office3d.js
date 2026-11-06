@@ -564,9 +564,9 @@
     let hovered = null;
     const view = createViewer(host, {
       home: { theta: 0.35, phi: 0.9, r: 68 }, limits: { phi: [0.25, 1.42], r: [24, 130] }, fov: 30, target: [0, 0, 1.5],
-      shadowSize: 30, shadowMap: 2048, spin: 0.12, background: 0x0f1628, fog: [95, 190],
+      shadowSize: 30, shadowMap: 2048, spin: 0.12, background: 0x0b1430, fog: [95, 190],
       build(K, scene) {
-        const ground = K.box(400, 0.2, 400, 0x16203a, 0, -1.05, 0, scene); ground.castShadow = false;
+        const ground = K.box(400, 0.2, 400, 0x13224a, 0, -1.05, 0, scene); ground.castShadow = false;
         // The Brain hub
         const hub = new THREE.Group(); scene.add(hub);
         K.box(8, 0.6, 8, 0x2f3a52, 0, -0.75, 0, hub); K.box(8.3, 0.12, 8.3, 0x253049, 0, -0.85, 0, hub);

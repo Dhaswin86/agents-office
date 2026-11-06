@@ -5,47 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agents Office</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="office3d.js"></script>
 <style>
 :root {
-  --bg: #eef2f8; --panel: #ffffff; --panel-2: #eef2f8; --line: #dfe5ef; --line-2: #ccd5e3;
-  --text: #172033; --muted: #5b6578; --faint: #8f99ac;
-  --accent: #3b6fd8; --accent-strong: #2a56b8; --accent-soft: #e6eefc; --accent-line: #b5c9f0;
+  --bg: #edf3fd; --panel: #ffffff; --panel-2: #e9f0fc; --line: #d6e1f3; --line-2: #bfcfea;
+  --text: #10204a; --muted: #4a5a7e; --faint: #7d8bab;
+  --accent: #2457c5; --accent-strong: #1b4499; --accent-soft: #e2ebfc; --accent-line: #a9c1ee;
   --critter: #d97757; --eye: #111522;
   --ok: #3f8f5a; --ok-soft: #e3f2e8; --warn: #b8860b; --warn-soft: #f7eed6; --err: #c4453c; --err-soft: #f8e3e0;
   --scene: #dfe6f2; --scene-2: #d2dbea; --road: #b9c4d6; --road-line: #eef2f8; --card: rgba(255,255,255,.94); --card-line: #c9d3e3;
   --shadow: 0 1px 2px rgba(20,35,70,.06), 0 4px 14px rgba(20,35,70,.06);
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: Inter, system-ui, -apple-system, sans-serif;
-  --serif: Fraunces, Georgia, serif;
+  /* --mono is the UI label face (now the readable sans); --code is real monospace, only for code and commands */
+  --mono: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --code: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --serif: "Bricolage Grotesque", "Atkinson Hyperlegible", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0a0f1c; --panel: #111827; --panel-2: #172033; --line: #1f2a40; --line-2: #2c3a57;
-    --text: #e6ebf5; --muted: #9aa6bd; --faint: #5f6b84;
-    --accent: #6d9cff; --accent-strong: #8fb3ff; --accent-soft: #17233f; --accent-line: #2f4a85;
+    --bg: #0b1430; --panel: #101d3d; --panel-2: #16264d; --line: #22355f; --line-2: #2f4778;
+    --text: #e9f0ff; --muted: #a8b7d6; --faint: #7182a8;
+    --accent: #7fb0ff; --accent-strong: #a9caff; --accent-soft: #182c58; --accent-line: #34548f;
     --eye: #0a0f1c;
     --ok: #7cc79a; --ok-soft: #132a22; --warn: #ddb25a; --warn-soft: #2e2617; --err: #f08a80; --err-soft: #35191a;
-    --scene: #0e1526; --scene-2: #131c31; --road: #222d45; --road-line: #3a4a6b; --card: rgba(17,24,39,.92); --card-line: #2c3a57;
+    --scene: #0b1430; --scene-2: #12214a; --road: #222d45; --road-line: #3a4a6b; --card: rgba(17,24,39,.92); --card-line: #2c3a57;
     --shadow: 0 6px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0a0f1c; --panel: #111827; --panel-2: #172033; --line: #1f2a40; --line-2: #2c3a57;
-  --text: #e6ebf5; --muted: #9aa6bd; --faint: #5f6b84;
-  --accent: #6d9cff; --accent-strong: #8fb3ff; --accent-soft: #17233f; --accent-line: #2f4a85;
+  --bg: #0b1430; --panel: #101d3d; --panel-2: #16264d; --line: #22355f; --line-2: #2f4778;
+  --text: #e9f0ff; --muted: #a8b7d6; --faint: #7182a8;
+  --accent: #7fb0ff; --accent-strong: #a9caff; --accent-soft: #182c58; --accent-line: #34548f;
   --eye: #0a0f1c;
   --ok: #7cc79a; --ok-soft: #132a22; --warn: #ddb25a; --warn-soft: #2e2617; --err: #f08a80; --err-soft: #35191a;
-  --scene: #0e1526; --scene-2: #131c31; --road: #222d45; --road-line: #3a4a6b; --card: rgba(17,24,39,.92); --card-line: #2c3a57;
+  --scene: #0b1430; --scene-2: #12214a; --road: #222d45; --road-line: #3a4a6b; --card: rgba(17,24,39,.92); --card-line: #2c3a57;
   --shadow: 0 6px 24px rgba(0,0,0,.35);
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.5 var(--mono); }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.55 var(--sans); }
 a { color: var(--accent-strong); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font: inherit; color: inherit; }
@@ -53,14 +55,14 @@ button { font: inherit; color: inherit; }
 /* top bar */
 .top { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; padding: 12px 18px; border-bottom: 1px solid var(--line);
   background: var(--panel); position: sticky; top: 0; z-index: 5; }
-.brand { font: 600 20px/1 var(--serif); letter-spacing: .02em; color: var(--text); display: flex; align-items: baseline; gap: 6px; }
+.brand { font: 800 22px/1 var(--serif); letter-spacing: -.01em; color: var(--text); display: flex; align-items: baseline; gap: 6px; }
 .brand:hover { text-decoration: none; }
-.brand sup { font: 600 10px var(--mono); color: var(--faint); }
+.brand sup { display: none; }
 .top .org { color: var(--muted); }
-.conn { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; display: inline-flex; align-items: center; gap: 6px; }
+.conn { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
 .conn i, .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); display: inline-block; }
 .top .right { margin-left: auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.live { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: .08em; }
+.live { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
 .live.off i { background: var(--err); }
 .clock { font: 600 15px var(--serif); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 3px 10px; }
 select { font: 12px var(--mono); color: var(--text); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 8px; padding: 5px 9px; max-width: 100%; }
@@ -114,7 +116,7 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .isl.s-waiting .worker, .isl.s-skipped .worker { filter: grayscale(.6) brightness(.8); opacity: .75; }
 .isl.s-running .wk .lbl-bg { stroke: var(--accent); }
 .lbl.role { font-size: 7.5px; }
-.lbl { font: 600 8.5px var(--mono); fill: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.lbl { font: 600 8.5px var(--mono); fill: var(--muted); }
 .lbl-bg { fill: var(--card); stroke: var(--card-line); }
 .hub-node { fill: var(--accent); }
 .hub-link { stroke: var(--accent); stroke-width: .8; opacity: .5; }
@@ -127,14 +129,14 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
   padding: 10px 12px; box-shadow: var(--shadow); cursor: pointer; backdrop-filter: blur(4px); height: 100%; }
 .card:hover { border-color: var(--accent); }
 .card.s-running { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
-.card .t { display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+.card .t { display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 600; }
 .card .t .d { width: 7px; height: 7px; border-radius: 50%; }
 .card .big { display: flex; align-items: baseline; gap: 6px; margin: 4px 0 6px; justify-content: center; }
 .card .big b { font: 600 28px/1 var(--serif); }
-.card .big span { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
-.card .m { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.card .big span { font-size: 10px; color: var(--muted); letter-spacing: .1em; }
+.card .m { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); }
 .card .m b { color: var(--text); font-weight: 600; }
-.card .dnd { display: flex; gap: 10px; border-top: 1px solid var(--card-line); margin-top: 7px; padding-top: 6px; font-size: 10px; color: var(--faint); text-transform: uppercase; }
+.card .dnd { display: flex; gap: 10px; border-top: 1px solid var(--card-line); margin-top: 7px; padding-top: 6px; font-size: 10px; color: var(--faint); }
 .card .dnd b { color: var(--text); font-weight: 600; margin-left: 3px; }
 .card .st { margin-top: 6px; font-size: 10.5px; display: flex; gap: 6px; align-items: center; }
 .card .st .ic { color: var(--accent); }
@@ -147,30 +149,30 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .side { border-left: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; min-width: 0; }
 .side .sec { padding: 14px 16px; border-bottom: 1px solid var(--line); }
 .cmd { border: 1px solid var(--line-2); border-radius: 10px; padding: 10px; background: var(--panel-2); }
-.cmd .row1 { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.cmd .row1 { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
 .cmd .row1 .d { width: 7px; height: 7px; border-radius: 50%; background: var(--critter); }
-.cmd code { display: block; margin: 8px 0; font-size: 12.5px; color: var(--accent-strong); word-break: break-all; }
+.cmd code { font-family: var(--code); display: block; margin: 8px 0; font-size: 12.5px; color: var(--accent-strong); word-break: break-all; }
 .cmd .row2 { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .chipbtn { border: 1px solid var(--line-2); background: var(--panel); border-radius: 6px; padding: 3px 8px; font-size: 11px; cursor: pointer; color: var(--muted); }
 .chipbtn:hover { border-color: var(--accent); color: var(--text); }
 .chipbtn.primary { margin-left: auto; background: var(--accent); border-color: var(--accent); color: #fff; }
-.side h2 { margin: 0; font: 600 16px var(--serif); letter-spacing: .03em; display: flex; justify-content: space-between; align-items: baseline; }
-.side h2 small { font: 500 10px var(--mono); color: var(--faint); text-transform: uppercase; letter-spacing: .08em; }
+.side h2 { margin: 0; font: 600 16px var(--serif); display: flex; justify-content: space-between; align-items: baseline; }
+.side h2 small { font: 500 10px var(--mono); color: var(--faint); }
 .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
 .filters button { border: 1px solid var(--line-2); background: var(--panel-2); border-radius: 999px; padding: 2px 10px; font-size: 10.5px;
-  cursor: pointer; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  cursor: pointer; color: var(--muted); }
 .filters button.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-strong); }
 .tasks { flex: 1; overflow: auto; padding: 10px 12px 16px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100vh - 260px); }
 .task { border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px;
   align-items: start; background: var(--panel); }
 .task:hover { border-color: var(--line-2); }
-.task .pill { font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: .05em; margin-top: 1px; }
+.task .pill { font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 5px; margin-top: 1px; }
 .pill.doing { background: var(--accent-soft); color: var(--accent-strong); }
 .pill.done { background: var(--ok-soft); color: var(--ok); }
 .pill.waiting { background: var(--warn-soft); color: var(--warn); }
 .pill.skipped { background: var(--panel-2); color: var(--muted); }
 .task .txt { font: 12.5px/1.4 var(--sans); color: var(--text); }
-.task .sub { grid-column: 2 / 4; font-size: 10.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+.task .sub { grid-column: 2 / 4; font-size: 10.5px; color: var(--faint); }
 .task .when { font-size: 10.5px; color: var(--faint); white-space: nowrap; }
 .task .bar { grid-column: 2 / 4; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .task .bar i { display: block; height: 100%; width: 40%; background: var(--accent); animation: slide 1.4s ease-in-out infinite; }
@@ -185,14 +187,13 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .stage3d .s3-canvas.grab { cursor: grabbing; }
 .stage3d .crew { position: absolute; inset: 0; }
 .s3-labels { position: absolute; inset: 0; pointer-events: none; }
-.s3-tag { position: absolute; left: 0; top: 0; white-space: nowrap; font: 600 10.5px var(--mono); text-transform: uppercase; letter-spacing: .05em;
-  background: var(--card); border: 1px solid var(--card-line); color: var(--text); padding: 2px 8px; border-radius: 6px; box-shadow: var(--shadow); }
+.s3-tag { position: absolute; left: 0; top: 0; white-space: nowrap; font: 600 10.5px var(--mono); background: var(--card); border: 1px solid var(--card-line); color: var(--text); padding: 2px 8px; border-radius: 6px; box-shadow: var(--shadow); }
 .s-running .s3-tag { border-color: var(--accent); }
 .s3-tag .zz { display: none; font-style: normal; color: var(--faint); margin-left: 6px; }
 .s3-tag.sleep .zz { display: inline; animation: pulse 1.6s infinite; }
 .s3-title { position: absolute; left: 16px; top: 14px; font: 600 15px var(--serif); display: flex; align-items: center; gap: 8px; }
 .s3-title .d { width: 9px; height: 9px; border-radius: 50%; background: var(--team); }
-.s3-title small { font: 500 10.5px var(--mono); color: var(--faint); text-transform: uppercase; letter-spacing: .08em; }
+.s3-title small { font: 500 10.5px var(--mono); color: var(--faint); }
 .s3-ui { position: absolute; right: 14px; top: 12px; display: flex; gap: 6px; }
 .s3-ui button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--card-line); background: var(--card); color: var(--text);
   cursor: pointer; font-size: 15px; box-shadow: var(--shadow); }
@@ -205,13 +206,15 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .floor3d { padding: 0; display: block; }
 .office3d { height: calc(100vh - 57px); min-height: 520px; margin: 0; border-radius: 0; border: 0; }
 .office3d .s3-labels { pointer-events: none; }
+/* the office's 3D scene is always night-blue, so text drawn straight on it stays light in either theme */
+.office3d .s3-title { color: #e9f0ff; } .office3d .s3-hint { color: #a8b7d6; }
 .s3-room { position: absolute; left: 0; top: 0; width: 176px; height: auto; padding: 8px 10px; opacity: .96; pointer-events: auto; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
 .s3-room.hot { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
 .s3-brain { font-size: 10px; }
 .s3-room .m, .s3-room .dnd { display: none; }
 .s3-room.hot .m, .s3-room:hover .m { display: flex; } .s3-room.hot .dnd, .s3-room:hover .dnd { display: flex; }
 .s3-room.hot, .s3-room:hover { z-index: 2; }
-.s3-room .t { justify-content: space-between; } .s3-room .t::after { content: "open →"; color: var(--faint); font-weight: 500; letter-spacing: .02em; text-transform: none; }
+
 .s3-room .big { margin: 2px 0 4px; } .s3-room .big b { font-size: 22px; } .s3-room .dnd { margin-top: 5px; padding-top: 4px; }
 @media (max-width: 1000px) { .office3d { height: 72vh; min-height: 440px; } .s3-room { width: 150px; font-size: 10px; } .s3-room .m, .s3-room .dnd { font-size: 9.5px; } }
 
@@ -230,8 +233,8 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .steps { list-style: none; margin: 6px 0 0; padding: 0 0 0 38px; display: flex; flex-direction: column; gap: 7px; }
 .steps li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; font: 13px/1.45 var(--sans); }
 .steps .pic { font-size: 15px; line-height: 1.3; }
-.steps .num { font: 600 10px var(--mono); color: var(--faint); text-transform: uppercase; margin-right: 6px; }
-.steps .word { font: 600 10px var(--mono); color: var(--accent-strong); background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; text-transform: uppercase; }
+.steps .num { font: 600 10px var(--mono); color: var(--faint); margin-right: 6px; }
+.steps .word { font: 600 10px var(--mono); color: var(--accent-strong); background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; }
 .steps .say { display: block; color: var(--text); margin-top: 2px; }
 .steps li.live .say::after { content: " …"; color: var(--accent); animation: pulse 1.2s infinite; }
 .more { margin: 6px 0 0 38px; border: 1px dashed var(--line-2); background: none; border-radius: 6px; padding: 3px 8px; font-size: 11px; color: var(--muted); cursor: pointer; }
@@ -262,7 +265,7 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .crew figure { margin: 0; text-align: center; }
 .crew .agent-icon { width: 112px; height: 112px; }
 .crew .agent-icon svg { --d: inherit; }
-.crew figcaption { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.crew figcaption { font-size: 10.5px; color: var(--muted); }
 .hero.s-waiting .agent-icon * { animation-play-state: paused !important; }
 .hero { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; background: var(--panel);
   border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; margin-bottom: 16px; box-shadow: var(--shadow); }
@@ -303,7 +306,7 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 .stepnav { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; font-size: 13px; }
 .md { font: 14px/1.6 var(--sans); }
 .md h1 { font-size: 18px; margin-top: 0; } .md h2 { font-size: 15.5px; margin-top: 1.4em; } .md h3 { font-size: 14px; }
-.md code { font: 12.5px var(--mono); background: var(--panel-2); padding: 1px 5px; border-radius: 4px; color: var(--accent-strong); }
+.md code { font: 12.5px var(--code); background: var(--panel-2); padding: 1px 5px; border-radius: 4px; color: var(--accent-strong); }
 .md pre { background: var(--panel-2); padding: 12px; border-radius: 8px; overflow: auto; }
 .md pre code { background: none; padding: 0; color: var(--text); }
 .md table { border-collapse: collapse; display: block; overflow-x: auto; font-size: 13px; }
@@ -322,9 +325,8 @@ select { font: 12px var(--mono); color: var(--text); background: var(--panel-2);
 </head>
 <body>
 <div class="top">
-  <a class="brand" href="#/">AGENTS OFFICE<sup>v1</sup></a>
-  <span class="org">· Thriveni</span>
-  <span class="conn"><i></i>demo data</span>
+  <a class="brand" href="#/">Agents Office</a>
+  <span class="conn"><i></i>Demo data, not a real assignment</span>
   <span class="crumb" id="crumb"></span>
   <div class="right">
     <select id="runSel" aria-label="Assignment run"></select>
@@ -533,12 +535,12 @@ function sidebar(s) {
   const f = (k, label, n) => `<button data-filter="${k}" class="${filter === k ? 'on' : ''}">${label} ${n}</button>`;
   return `<aside class="side">
     <div class="sec"><div class="cmd">
-      <div class="row1"><span class="d"></span>New assignment run</div>
+      <div class="row1"><span class="d"></span>Start the next assignment</div>
       <code id="cmdText">/thriveni-assignment</code>
-      <div class="row2"><span class="chipbtn" title="AI policy of this run">policy: ${esc(String(s.aiPolicy).replace('_', ' '))}</span>
-        <button class="chipbtn primary" id="copyCmd">copy</button></div>
+      <div class="row2"><span class="chipbtn" title="What Thriveni allows for this assignment">AI help: ${esc(String(s.aiPolicy).replace('_', ' '))}</span>
+        <button class="chipbtn primary" id="copyCmd">Copy command</button></div>
     </div></div>
-    <div class="sec"><h2>TASK STATUS <small><a href="#/story">read the whole story big →</a></small></h2>
+    <div class="sec"><h2>What happened <small><a href="#/story">Open the full story</a></small></h2>
       <div class="filters"><button data-mode="story" class="${mode === 'story' ? 'on' : ''}">📖 story</button><button data-mode="list" class="${mode === 'list' ? 'on' : ''}">☰ list</button></div>
       ${mode === 'list' ? `<div class="filters">${f('all', 'all', all.length)}${f('doing', 'doing', count('doing'))}${f('waiting', 'waiting', count('waiting'))}${f('done', 'done', count('done'))}</div>` : ''}</div>
     <div class="tasks">${mode === 'story' ? story(s, false) : shown.length ? shown.map(t => `<div class="task">
@@ -572,7 +574,9 @@ function kind(t) {
   if (/compil|\bran\b|\brun\b|tested/i.test(t)) return ['⚙️', 'tested'];
   if (/^(wrote|writing|saved)/i.test(t)) return ['✍️', 'wrote'];
   if (/^(proved|check|verif)/i.test(t)) return ['✅', 'checked'];
-  if (/^(found|looking|plan)/i.test(t)) return ['💡', 'figured out'];
+  if (/^(found|looking|plan)|flagged|decided/i.test(t)) return ['💡', 'figured out'];
+  if (/^(scanned|checked|looked)/i.test(t)) return ['🔎', 'checked'];
+  if (/\b(done|finished|complete)\b[.:,]?/i.test(t)) return ['🏁', 'finished'];
   return ['👉', 'did'];
 }
 // Say the jargon in plain words, keeping the real name in brackets
@@ -621,11 +625,12 @@ function sitesUsed(s) {
   const items = logItems(finder.logText);
   return {
     sites: Object.values(by).sort((a, b) => b.pages.length - a.pages.length),
-    searches: items.filter(it => /^search/i.test(it.t)).map(it => it.t.replace(/^searched\s*(for)?\s*/i, '')),
+    searches: items.filter(it => /^search/i.test(it.t)).map(it => it.t.replace(/^searched\s*(\(firecrawl\))?\s*:?\s*(for)?\s*/i, '')),
     failed: items.filter(it => /blocked|403|returned empty|failed/i.test(it.t)).map(it => it.t.replace(/^tried\s*/i, '')),
     local: /~\/Documents|\/Users\//.test(finder.outputText || '') || items.some(it => /~\/Documents/.test(it.t)),
   };
 }
+const finderLog = s => ((s.agents.find(a => a.id === 'finder') || {}).logText || '');
 function handIns(s) {
   const b = s.agents.find(a => a.id === 'builder') || {};
   const part = ((b.outputText || '').split(/^##\s*What (the user|you) must do.*$/im)[2] || '').split(/^##\s/m)[0];
@@ -642,7 +647,7 @@ function story(s, full) {
     const show = full || openCh.has(a.id) || items.length <= 4 ? items : items.slice(-4);
     const hidden = items.length - show.length;
     const verb = a.state === 'done' ? K.done : a.state === 'running' ? K.running : a.state === 'skipped' ? 'was skipped' : K.waiting;
-    const when = a.started ? `${fmtTime(a.started)} → ${a.finished ? fmtTime(a.finished) : 'now'} · ${a.finished ? 'took ' + dur(a.started, a.finished) : 'working for ' + dur(a.started)}` : 'not started yet';
+    const when = a.started ? `${fmtTime(a.started)} to ${a.finished ? fmtTime(a.finished) : 'now'}, ${a.finished ? 'took ' + dur(a.started, a.finished) : 'working for ' + dur(a.started)}` : 'Not started yet';
     const steps = show.map((it, k) => {
       const [pic, word] = kind(it.t), num = first + (items.length - show.length) + k, live = a.state === 'running' && k === show.length - 1;
       return `<li class="${live ? 'live' : ''}"><span class="pic">${pic}</span><span><span class="num">Step ${num}</span><span class="word">${word}</span>
@@ -656,14 +661,14 @@ function story(s, full) {
           <div class="site-what">${esc(siteName(st.host))}</div>
           ${full ? `<div class="pages">${st.pages.map(p => `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.page)}</a>`).join('')}</div>` : ''}</div>`).join('') || '<p class="empty">No websites yet.</p>'}
         ${u.local ? '<div class="site local"><div class="site-top"><b>📁 Your own past work</b></div><div class="site-what">It also checked your Documents folder for older homework like this one.</div></div>' : ''}
-        ${u.searches.length ? `<div class="sites-h">🔍 What it searched for</div><ul class="mini">${u.searches.map(q => `<li>${esc(plain(q))}</li>`).join('')}</ul>` : ''}
+        ${u.searches.length ? `<div class="sites-h">🔍 What it searched for${/firecrawl/i.test(finderLog(s)) ? ' <small>with Firecrawl</small>' : ''}</div><ul class="mini">${u.searches.map(q => `<li>${esc(plain(q))}</li>`).join('')}</ul>` : ''}
         ${u.failed.length ? `<div class="sites-h">🚫 Websites that wouldn't open</div><ul class="mini">${u.failed.map(q => `<li>${esc(plain(q))}</li>`).join('')}</ul>` : ''}
       </div>`;
     }
     return `<section class="ch s-${a.state}" style="--team:${T.dot}">
       <div class="ch-head"><span class="ch-n">${i + 1}</span>
         <div><div class="ch-title">The <b>${esc(a.label)}</b> ${esc(verb)}</div><div class="ch-why">${esc(K.why)}</div></div></div>
-      <div class="ch-meta"><span>🕒 ${esc(when)}</span>${items.length ? `<span>${items.length} steps</span>` : ''}</div>
+      <div class="ch-meta"><span>${esc(when)}</span>${items.length ? `<span>${items.length} steps</span>` : ''}</div>
       ${items.length ? `${hidden > 0 ? `<button class="more" data-open="${a.id}">show the first ${hidden} steps too</button>` : ''}<ol class="steps">${steps}</ol>` : `<p class="empty">${a.state === 'waiting' ? 'It is waiting for its turn.' : 'No steps written down.'}</p>`}
       ${a.summary ? `<div class="ch-end">🎯 <b>What it finished with:</b> ${esc(plain(a.summary))}</div>` : ''}
       ${extra}
@@ -717,14 +722,14 @@ function agentPage(s, a) {
     <section class="stage3d s-${a.state}" id="stage3d" style="--team:${TEAM[a.id].dot}">
       ${window.THREE && window.Office3D ? '' : crew2d}
       <div class="s3-labels"></div>
-      <div class="s3-title"><span class="d"></span>${esc(a.label)}'s room <small>${a.state === 'waiting' ? 'asleep until its turn' : a.state === 'running' ? 'working now' : a.state === 'done' ? 'finished, still tidying up' : ''}</small></div>
+      <div class="s3-title"><span class="d"></span>${esc(a.label)}'s room <small>${a.state === 'waiting' ? 'Asleep until its turn' : a.state === 'running' ? 'Working now' : a.state === 'done' ? 'Finished' : ''}</small></div>
       <div class="s3-ui"><button data-3d="in" title="Zoom in">+</button><button data-3d="out" title="Zoom out">−</button>
         <button data-3d="spin" title="Spin around">⟳</button><button data-3d="reset" title="Reset view">⌂</button></div>
-      <div class="s3-hint">drag to turn the room · pinch or ⌘ + scroll to zoom</div>
+      <div class="s3-hint">Drag to look around the room. Pinch, or hold ⌘ and scroll, to zoom.</div>
       ${a.state === 'done' ? '<span class="s3-done">✓ done</span>' : ''}
     </section>
     <section class="hero s-${a.state}">
-      <div><h1>${esc(a.label)}</h1><div class="handle">@${esc(a.name)} · step ${i + 1} of ${ag.length}</div>
+      <div><h1>${esc(a.label)}</h1><div class="handle">Step ${i + 1} of ${ag.length}, run by the ${esc(a.name)} agent</div>
         <p class="role">${esc(a.role)}</p>${statusLine(a)}
         ${a.summary ? `<div class="result"><span>⎿</span><span>${esc(a.summary)}</span></div>` : ''}
         <div class="meta"><span>started <b>${fmtTime(a.started) || '–'}</b></span><span>finished <b>${fmtTime(a.finished) || '–'}</b></span>
@@ -802,7 +807,7 @@ function demoShift(d) {
 const route = () => (location.hash.match(/^#\/(\w+)/) || [])[1] || '';
 function render(s) {
   const a = s.agents.find(x => x.id === route());
-  $('#crumb').textContent = a ? '/ ' + a.label : route() === 'story' ? '/ The whole story' : '';
+  $('#crumb').textContent = a ? '/ ' + a.label : route() === 'story' ? '/ What happened' : '';
   if (a) { $('#main').innerHTML = agentPage(s, a); mountOffice3d(null); mount3d(a); return; }
   mount3d(null);
   if (route()) mountOffice3d(null);
@@ -817,11 +822,11 @@ function render(s) {
   $('#main').innerHTML = `<div class="office">${has3d ? `<section class="floor floor3d">
       <div class="stage3d office3d" id="office3d">
         <div class="s3-labels">${s.agents.map(x => `<div class="card s3-room s-${x.state}" data-go="${x.id}">${cardBody(s, x)}</div>`).join('')}
-          <span class="s3-tag s3-brain"><b>The Brain</b> · ${s.events.length} notes</span></div>
-        <div class="s3-title"><span class="d" style="background:var(--accent)"></span>The whole office <small>360° · click a room to go inside</small></div>
+          <span class="s3-tag s3-brain"><b>The Brain</b>, ${s.events.length} notes</span></div>
+        <div class="s3-title"><span class="d" style="background:var(--accent)"></span>The office</div>
         <div class="s3-ui"><button data-3d="in" title="Zoom in">+</button><button data-3d="out" title="Zoom out">−</button>
           <button data-3d="spin" title="Spin around">⟳</button><button data-3d="reset" title="Reset view">⌂</button></div>
-        <div class="s3-hint">drag to turn · pinch or ⌘ + scroll to zoom · click a room</div>
+        <div class="s3-hint">Drag to look around. Pinch, or hold ⌘ and scroll, to zoom. Click a room to go in.</div>
       </div></section>` : `<section class="floor">${office(s)}
       <div class="hint">drag to move · click a team to open it</div>
       <div class="zoom"><button data-zoom="in" aria-label="Zoom in">+</button><button data-zoom="out" aria-label="Zoom out">−</button><button data-zoom="reset" aria-label="Reset view">⌂</button></div>
@@ -864,8 +869,8 @@ document.addEventListener('click', e => {
   if (f) { filter = f.dataset.filter; if (current) render(current); return; }
   if (e.target.closest('#copyCmd')) {
     const t = $('#cmdText').textContent, b = $('#copyCmd');
-    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { b.textContent = 'copied'; }, () => { b.textContent = 'select & copy'; });
-    setTimeout(() => { if ($('#copyCmd')) $('#copyCmd').textContent = 'copy'; }, 1500);
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { b.textContent = 'Copied'; }, () => { b.textContent = 'Select it and copy'; });
+    setTimeout(() => { if ($('#copyCmd')) $('#copyCmd').textContent = 'Copy command'; }, 1500);
     return;
   }
   const g = e.target.closest('[data-go]');

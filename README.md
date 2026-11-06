@@ -17,3 +17,11 @@ A live viewer for a three-agent AI pipeline that works through an assignment:
 This is a static demo with made-up data ("Build a Simple To-Do App"), so no real assignment content is published. The real viewer runs locally against private assignment folders.
 
 Built with plain HTML/JS and [Three.js](https://threejs.org/) r128.
+
+## Tests
+`tests/test_office.py` is a Playwright check of the whole viewer (29 checks: 3D office, camera controls, clicking into rooms, the story, phone layout, no JS errors):
+
+```
+python3 -m http.server 8840 &
+python3 tests/test_office.py http://localhost:8840 /tmp
+```
