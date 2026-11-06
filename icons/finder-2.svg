@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" shape-rendering="crispEdges" role="img" aria-label="Doc reader reading a book from the shelf">
+<title>Doc reader reading a book from the shelf</title>
+<style>
+.bw-eyes { animation: bw-blink 4s steps(1) infinite; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: center; }
+@keyframes bw-blink { 0%, 92%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.2); } }
+
+.bw-pull { animation: bw-pull 3s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes bw-pull { 0%, 20% { transform: translateX(0); } 40%, 70% { transform: translateX(-3px); } 90%, 100% { transform: translateX(0); } }
+.bw-pa { animation: bw-flip .9s steps(1) infinite; animation-delay: var(--d, 0s); }
+.bw-pb { animation: bw-flip .9s steps(1) infinite reverse; animation-delay: var(--d, 0s); }
+@keyframes bw-flip { 50% { opacity: 0; } }
+.bw-bob { animation: bw-bob .9s steps(2) infinite; animation-delay: var(--d, 0s); }
+@keyframes bw-bob { 50% { transform: translateY(-.5px); } }
+</style>
+<rect x="17" y="3" width="13" height="21" fill="#8a5a3b"/><rect x="18" y="4" width="11" height="19" fill="#5a412a"/><rect x="18" y="10" width="11" height="1" fill="#8a5a3b"/><rect x="18" y="16" width="11" height="1" fill="#8a5a3b"/><rect x="18" y="5" width="1" height="5" fill="#d97757"/><rect x="19" y="6" width="2" height="4" fill="#8fb3ff"/><rect x="21" y="5" width="1" height="5" fill="#e9b949"/><rect x="23" y="6" width="2" height="4" fill="#7cc79a"/><rect x="25" y="5" width="1" height="5" fill="#c9bfae"/><rect x="26" y="6" width="2" height="4" fill="#b07cc7"/><rect x="18" y="11" width="2" height="5" fill="#e9b949"/><rect x="20" y="12" width="1" height="4" fill="#7cc79a"/><rect x="21" y="11" width="2" height="5" fill="#c9bfae"/><rect x="24" y="12" width="1" height="4" fill="#b07cc7"/><rect x="27" y="12" width="1" height="4" fill="#8fb3ff"/><rect x="18" y="17" width="1" height="5" fill="#c9bfae"/><rect x="19" y="18" width="2" height="4" fill="#b07cc7"/><rect x="21" y="17" width="1" height="5" fill="#d97757"/><rect x="23" y="18" width="2" height="4" fill="#8fb3ff"/><rect x="25" y="17" width="1" height="5" fill="#e9b949"/><rect x="26" y="18" width="2" height="4" fill="#7cc79a"/><g class="bw-pull"><rect x="25" y="11" width="2" height="5" fill="#d97757"/></g><g class="bw-bob"><rect x="2" y="16" width="8" height="6" fill="#d97757"/><rect x="0" y="18" width="2" height="2" fill="#d97757"/><rect x="10" y="18" width="2" height="2" fill="#d97757"/><rect x="2" y="22" width="1" height="2" fill="#d97757"/><rect x="4" y="22" width="1" height="2" fill="#d97757"/><rect x="7" y="22" width="1" height="2" fill="#d97757"/><rect x="9" y="22" width="1" height="2" fill="#d97757"/><g class="bw-eyes"><rect x="7" y="17" width="1" height="1" fill="#1d1b18"/><rect x="9" y="17" width="1" height="1" fill="#1d1b18"/></g><rect x="11" y="17" width="6" height="3" fill="#f4efe4"/><rect x="14" y="17" width="1" height="3" fill="#c9bfae"/><g class="bw-pa"><rect x="15" y="16" width="2" height="3" fill="#ffffff"/></g><g class="bw-pb"><rect x="11" y="16" width="2" height="3" fill="#ffffff"/></g></g>
+</svg>

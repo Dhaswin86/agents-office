@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" shape-rendering="crispEdges" role="img" aria-label="Question sorter moving papers">
+<title>Question sorter moving papers</title>
+<style>
+.so-eyes { animation: so-blink 4s steps(1) infinite; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: center; }
+@keyframes so-blink { 0%, 92%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.2); } }
+
+.so-seq { opacity: 0; animation: so-seq 4.2s steps(1) infinite both; animation-delay: var(--d, 0s); }
+@keyframes so-seq { 0% { opacity: 0; } 3%, 88% { opacity: 1; } 89%, 100% { opacity: 0; } }
+.so-fly { animation: so-fly 1.4s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes so-fly { 0% { transform: translate(0, 0); opacity: 1; } 50% { transform: translate(4.5px, -5px); } 90% { transform: translate(9px, 1px); opacity: 1; } 100% { transform: translate(9px, 1px); opacity: 0; } }
+.so-think { transform-box: fill-box; transform-origin: 0% 100%; animation: so-think 3s ease-out infinite; animation-delay: var(--d, 0s); }
+@keyframes so-think { 0%, 35% { opacity: 0; transform: scale(.4); } 45%, 90% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+.so-arm { animation: so-arm 1.4s steps(2) infinite; animation-delay: var(--d, 0s); }
+@keyframes so-arm { 50% { transform: translate(2px, -1px); } }
+</style>
+<rect x="13" y="19" width="6" height="2" fill="#6e4a31"/><rect x="22" y="19" width="6" height="2" fill="#6e4a31"/><rect x="14" y="17" width="4" height="2" fill="#f4efe4"/><rect x="23" y="18" width="4" height="1" fill="#f4efe4"/><g class="so-seq" style="animation-delay:calc(var(--d, 0s) + 0.0s)"><rect x="23" y="17" width="4" height="1" fill="#f4efe4"/></g><g class="so-seq" style="animation-delay:calc(var(--d, 0s) + 1.4s)"><rect x="23" y="16" width="4" height="1" fill="#ffffff"/></g><g class="so-seq" style="animation-delay:calc(var(--d, 0s) + 2.8s)"><rect x="23" y="15" width="4" height="1" fill="#f4efe4"/></g><g class="so-fly"><rect x="14" y="16" width="4" height="1" fill="#ffffff"/></g><g class="so-think"><rect x="9" y="5" width="6" height="5" fill="#ffffff"/><rect x="10" y="4" width="4" height="1" fill="#ffffff"/><rect x="10" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="12" width="1" height="1" fill="#ffffff"/><rect x="7" y="13" width="1" height="1" fill="#ffffff"/><rect x="11" y="5" width="2" height="1" fill="#d97757"/><rect x="13" y="6" width="1" height="1" fill="#d97757"/><rect x="12" y="7" width="1" height="1" fill="#d97757"/><rect x="12" y="9" width="1" height="1" fill="#d97757"/></g><rect x="2" y="15" width="8" height="6" fill="#d97757"/><rect x="0" y="17" width="2" height="2" fill="#d97757"/><rect x="10" y="17" width="2" height="2" fill="#d97757"/><g class="so-eyes"><rect x="6" y="16" width="1" height="1" fill="#1d1b18"/><rect x="8" y="16" width="1" height="1" fill="#1d1b18"/></g><g class="so-arm"><rect x="10" y="17" width="3" height="2" fill="#d97757"/></g><rect x="1" y="21" width="30" height="2" fill="#a06b47"/><rect x="2" y="23" width="28" height="7" fill="#8a5a3b"/><rect x="13" y="25" width="6" height="1" fill="#6e4a31"/><rect x="2" y="29" width="28" height="1" fill="#6e4a31"/>
+</svg>

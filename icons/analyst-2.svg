@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" shape-rendering="crispEdges" role="img" aria-label="Planner drawing on a whiteboard">
+<title>Planner drawing on a whiteboard</title>
+<style>
+.pl-eyes { animation: pl-blink 4s steps(1) infinite; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: center; }
+@keyframes pl-blink { 0%, 92%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.2); } }
+
+.pl-seq { opacity: 0; animation: pl-seq 5s steps(1) infinite both; animation-delay: var(--d, 0s); }
+@keyframes pl-seq { 0% { opacity: 0; } 3%, 88% { opacity: 1; } 89%, 100% { opacity: 0; } }
+.pl-pen { animation: pl-pen 5s steps(1) infinite; animation-delay: var(--d, 0s); }
+@keyframes pl-pen { 0% { transform: translate(4px, -9px); } 16% { transform: translate(9px, -9px); } 32% { transform: translate(12px, -9px); }
+  48% { transform: translate(6px, -4px); } 64% { transform: translate(8px, -2px); } 88%, 100% { transform: translate(0, 0); } }
+</style>
+<rect x="13" y="3" width="17" height="14" fill="#9aa0a6"/><rect x="14" y="4" width="15" height="12" fill="#f4f6f8"/><rect x="15" y="17" width="1" height="7" fill="#9aa0a6"/><rect x="27" y="17" width="1" height="7" fill="#9aa0a6"/><rect x="14" y="16" width="15" height="1" fill="#c9ced4"/><g class="pl-seq" style="animation-delay:calc(var(--d, 0s) + 0.0s)"><rect x="16" y="6" width="4" height="1" fill="#3b6fd8"/><rect x="16" y="8" width="4" height="1" fill="#3b6fd8"/><rect x="16" y="6" width="1" height="3" fill="#3b6fd8"/><rect x="19" y="6" width="1" height="3" fill="#3b6fd8"/></g><g class="pl-seq" style="animation-delay:calc(var(--d, 0s) + 0.8s)"><rect x="21" y="7" width="2" height="1" fill="#d97757"/></g><g class="pl-seq" style="animation-delay:calc(var(--d, 0s) + 1.6s)"><rect x="24" y="6" width="4" height="1" fill="#3b6fd8"/><rect x="24" y="8" width="4" height="1" fill="#3b6fd8"/><rect x="24" y="6" width="1" height="3" fill="#3b6fd8"/><rect x="27" y="6" width="1" height="3" fill="#3b6fd8"/></g><g class="pl-seq" style="animation-delay:calc(var(--d, 0s) + 2.4s)"><rect x="16" y="11" width="11" height="1" fill="#8d939a"/></g><g class="pl-seq" style="animation-delay:calc(var(--d, 0s) + 3.2s)"><rect x="16" y="13" width="7" height="1" fill="#8d939a"/></g><rect x="2" y="16" width="8" height="6" fill="#d97757"/><rect x="0" y="18" width="2" height="2" fill="#d97757"/><rect x="10" y="18" width="2" height="2" fill="#d97757"/><rect x="2" y="22" width="1" height="2" fill="#d97757"/><rect x="4" y="22" width="1" height="2" fill="#d97757"/><rect x="7" y="22" width="1" height="2" fill="#d97757"/><rect x="9" y="22" width="1" height="2" fill="#d97757"/><g class="pl-eyes"><rect x="7" y="17" width="1" height="1" fill="#1d1b18"/><rect x="9" y="17" width="1" height="1" fill="#1d1b18"/></g><g class="pl-pen"><rect x="11" y="17" width="2" height="2" fill="#d97757"/><rect x="13" y="16" width="1" height="1" fill="#2a2f38"/></g>
+</svg>

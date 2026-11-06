@@ -1,0 +1,154 @@
+{
+ "title": "DEMO \u00b7 Build a Simple To-Do App",
+ "aiPolicy": "preferred",
+ "folder": "~/Documents/2026/01 - January/Technology - To-Do App (demo)",
+ "created": "2026-01-01T10:20:00",
+ "updated": "2026-01-01T10:29:00",
+ "agents": [
+  {
+   "id": "analyst",
+   "name": "assignment-analyst",
+   "label": "Analyst",
+   "role": "Reads the brief and turns it into a checkable plan",
+   "reads": [
+    "assignment-source.md",
+    "inputs/"
+   ],
+   "output": "brief.md",
+   "log": "process/analyst-log.md",
+   "state": "done",
+   "started": "2026-01-01T10:21:00",
+   "finished": "2026-01-01T10:22:00",
+   "summary": "2 deliverables, 6 checklist items, not blocking, small effort.",
+   "logText": "# Analyst log\n\n- **step 1** Started: reading the homework text\n- **step 2** Read assignment-source.md: one web page, 2 deliverables, AI policy preferred\n- **step 3** Looking for related past JavaScript work in ~/Documents\n- **step 4** Found an earlier Bill Splitter page that also uses buttons and lists\n- **step 5** Writing brief.md (1 ambiguity, BLOCKING: no)\n- **step 6** brief.md written: 2 deliverables, 6 checklist items. Done.\n",
+   "outputText": "# Brief: Build a Simple To-Do App\n\n## 1. Title and track\nBuild a Simple To-Do App \u00b7 Technology / JavaScript \u00b7 AI policy: **preferred**\n\n## 2. Goal in one sentence\nShow you can build a small web page that adds, ticks off and removes tasks, and remembers them.\n\n## 3. Deliverables\n1. A working web page (index.html, style.css, app.js)\n2. A short write-up explaining how it works\n\n## 4. Requirements checklist\n- [ ] A text box and an Add button create a new task\n- [ ] Clicking a task ticks it off (strike-through)\n- [ ] Each task has a delete button\n- [ ] Tasks are saved in localStorage and come back after a refresh\n- [ ] Empty tasks are not allowed\n- [ ] The page works on a phone screen\n\n## 7. Ambiguities / questions for the user\nBLOCKING: no\n- Should finished tasks move to the bottom? Default: keep them in place.\n"
+  },
+  {
+   "id": "finder",
+   "name": "source-finder",
+   "label": "Source finder",
+   "role": "Finds docs, tutorials and past work for each requirement",
+   "reads": [
+    "brief.md"
+   ],
+   "output": "sources.md",
+   "log": "process/finder-log.md",
+   "state": "done",
+   "started": "2026-01-01T10:22:00",
+   "finished": "2026-01-01T10:25:00",
+   "summary": "7 sources (mostly MDN), every requirement covered.",
+   "logText": "# Source finder log\n\n- **step 1** Started: reading brief.md\n- **step 2** Searched for how to add tasks with JavaScript buttons\n- **step 3** Opened MDN \"Introduction to events\": how a click runs code\n- **step 4** Opened MDN \"addEventListener\": the exact way to listen for clicks\n- **step 5** Opened MDN \"Window.localStorage\": saving tasks so they survive a refresh\n- **step 6** Tried a blog post about to-do apps: blocked (403). Skipped\n- **step 7** Opened W3Schools to-do list guide: a simple full example\n- **step 8** Opened javascript.info \"Modifying the document\": adding and removing list items\n- **step 9** Opened MDN \"Responsive design\": making it fit a phone\n- **step 10** Writing sources.md\n",
+   "outputText": "# Sources\n\n## Making the page react to clicks\n- MDN \"Introduction to events\": https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events\n- MDN \"addEventListener\": https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener\n\n## Remembering tasks\n- MDN \"Window.localStorage\": https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage\n- web.dev \"Storage for the web\": https://web.dev/articles/storage-for-the-web\n\n## Building the list\n- W3Schools \"How to create a to-do list\": https://www.w3schools.com/howto/howto_js_todolist.asp\n- javascript.info \"Modifying the document\": https://javascript.info/modifying-document\n\n## Phone screens\n- MDN \"Responsive design\": https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design\n\n## Gaps\n- None; every requirement has a source.\n"
+  },
+  {
+   "id": "builder",
+   "name": "assignment-builder",
+   "label": "Builder",
+   "role": "Does the assignment and checks it against the brief",
+   "reads": [
+    "brief.md",
+    "sources.md",
+    "inputs/"
+   ],
+   "output": "report.md",
+   "log": "process/builder-log.md",
+   "state": "running",
+   "started": "2026-01-01T10:26:00",
+   "finished": null,
+   "summary": "",
+   "logText": "# Builder log\n\n- **step 1** Started: reading brief, sources and inputs\n- **step 2** Read brief and sources. Plan: index.html, style.css, app.js, then a write-up\n- **step 3** Wrote index.html and style.css: input, Add button, task list\n- **step 4** Writing app.js: add, tick off and delete tasks\n",
+   "outputText": null
+  }
+ ],
+ "events": [
+  {
+   "t": "2026-01-01T10:20:00",
+   "agent": "pipeline",
+   "msg": "Pipeline created (AI policy: preferred)"
+  },
+  {
+   "t": "2026-01-01T10:21:00",
+   "agent": "analyst",
+   "kind": "start",
+   "msg": "Reading the brief and inputs"
+  },
+  {
+   "t": "2026-01-01T10:22:00",
+   "agent": "analyst",
+   "kind": "done",
+   "msg": "2 deliverables, 6 checklist items, not blocking, small effort."
+  },
+  {
+   "t": "2026-01-01T10:22:00",
+   "agent": "finder",
+   "kind": "start",
+   "msg": "Finding sources for each requirement"
+  },
+  {
+   "t": "2026-01-01T10:25:00",
+   "agent": "finder",
+   "kind": "done",
+   "msg": "7 sources (mostly MDN), every requirement covered."
+  },
+  {
+   "t": "2026-01-01T10:26:00",
+   "agent": "builder",
+   "kind": "start",
+   "msg": "Building the to-do app"
+  },
+  {
+   "t": "2026-01-01T10:29:00",
+   "agent": "builder",
+   "kind": "event",
+   "msg": "index.html and style.css written"
+  }
+ ],
+ "files": [
+  {
+   "path": "assignment-source.md",
+   "size": 1840,
+   "mtime": 1767243000.0
+  },
+  {
+   "path": "brief.md",
+   "size": 819,
+   "mtime": 1767243120.0
+  },
+  {
+   "path": "sources.md",
+   "size": 840,
+   "mtime": 1767243300.0
+  },
+  {
+   "path": "deliverables/index.html",
+   "size": 1210,
+   "mtime": 1767243450.0
+  },
+  {
+   "path": "deliverables/style.css",
+   "size": 960,
+   "mtime": 1767243460.0
+  },
+  {
+   "path": "process/analyst-log.md",
+   "size": 420,
+   "mtime": 1767243120.0
+  },
+  {
+   "path": "process/finder-log.md",
+   "size": 760,
+   "mtime": 1767243300.0
+  },
+  {
+   "path": "process/builder-log.md",
+   "size": 330,
+   "mtime": 1767243540.0
+  },
+  {
+   "path": "status.json",
+   "size": 2100,
+   "mtime": 1767243570.0
+  }
+ ],
+ "demoNow": "2026-01-01T10:30:00"
+}

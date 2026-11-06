@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" shape-rendering="crispEdges" role="img" aria-label="Source filer filing folders">
+<title>Source filer filing folders</title>
+<style>
+.fl-eyes { animation: fl-blink 4s steps(1) infinite; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: center; }
+@keyframes fl-blink { 0%, 92%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.2); } }
+
+.fl-drawer { animation: fl-drawer 2.6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes fl-drawer { 0%, 10% { transform: translateX(0); } 25%, 60% { transform: translateX(-4px); } 75%, 100% { transform: translateX(0); } }
+.fl-folder { animation: fl-folder 2.6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes fl-folder { 0%, 25% { transform: translate(0, 0); opacity: 1; } 50% { transform: translate(5px, -4px); opacity: 1; } 55%, 85% { opacity: 0; transform: translate(5px, -4px); } 86%, 100% { opacity: 1; transform: translate(0, 0); } }
+</style>
+<rect x="18" y="7" width="10" height="17" fill="#6b7686"/><rect x="19" y="8" width="8" height="4" fill="#7f8a9b"/><rect x="19" y="18" width="8" height="4" fill="#7f8a9b"/><rect x="22" y="9" width="2" height="1" fill="#c9ced4"/><rect x="22" y="19" width="2" height="1" fill="#c9ced4"/><rect x="19" y="13" width="8" height="4" fill="#4f5866"/><rect x="20" y="5" width="3" height="2" fill="#ffffff"/><rect x="24" y="5" width="3" height="2" fill="#ffe08a"/><g class="fl-drawer"><rect x="19" y="13" width="8" height="4" fill="#8a95a6"/><rect x="22" y="14" width="2" height="1" fill="#c9ced4"/><rect x="20" y="12" width="1" height="1" fill="#e9b949"/><rect x="22" y="12" width="1" height="1" fill="#8fb3ff"/><rect x="25" y="12" width="1" height="1" fill="#e9b949"/></g><rect x="3" y="16" width="8" height="6" fill="#d97757"/><rect x="1" y="18" width="2" height="2" fill="#d97757"/><rect x="11" y="18" width="2" height="2" fill="#d97757"/><rect x="3" y="22" width="1" height="2" fill="#d97757"/><rect x="5" y="22" width="1" height="2" fill="#d97757"/><rect x="8" y="22" width="1" height="2" fill="#d97757"/><rect x="10" y="22" width="1" height="2" fill="#d97757"/><g class="fl-eyes"><rect x="8" y="17" width="1" height="1" fill="#1d1b18"/><rect x="10" y="17" width="1" height="1" fill="#1d1b18"/></g><g class="fl-folder"><rect x="12" y="16" width="4" height="3" fill="#e9b949"/><rect x="12" y="15" width="2" height="1" fill="#e9b949"/></g>
+</svg>
